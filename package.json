@@ -1,0 +1,20 @@
+{
+  "name": "projetoestudo",
+  "version": "1.0.0",
+  "description": "projeto estudo de banco de dados mongoDB",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "keywords": [],
+  "author": "eder silva",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "mongodb": "^6.14.2",
+    "mongoose": "^8.12.1",
+    "morgan": "^1.10.0"
+  }
+}
