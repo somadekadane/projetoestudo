@@ -12,18 +12,27 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan("combined"));
 
-// Definir o modelo Cliente
-const Cliente = mongoose.model("Cliente", new mongoose.Schema({
-    nome: { type: String, required: true },
-    email: { type: String, required: true }
-    // Adicione outros campos conforme necessário
-}));
-
 // Conexão com o servidor DB
 const urlDB = "mongodb+srv://senac:123senac@projetonode.d0d37.mongodb.net/banco?retryWrites=true&w=majority&appName=ProjetoNode";
 mongoose.connect(urlDB, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("Conectado ao banco de dados"))
     .catch((err) => console.log("Erro ao conectar com o banco de dados:", err));
+
+
+// Definir o modelo Cliente
+const schema = new mongoose.Schema({
+    nome: { type: String, required: true },
+    email: { type: String, required: true },
+    cpf: { type: String, unique: true, required: true },
+    telefone: { type: String, unique: true, required: true },
+    idade: { type: Number, min: 16, max: 120 },
+    usuario: { type: String, unique: true },
+    senha: { type: String },
+    datacadastro: { type: Date, default: Date.now }
+    // Adicione outros campos conforme necessário
+});
+
+const Cliente = mongoose.model('Cliente',schema);
 
 // Rota GET para listar todos os clientes
 app.get("/", (req, res) => {
